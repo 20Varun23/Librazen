@@ -1,0 +1,26 @@
+import React from "react";
+//[ ]: functionality
+
+function DeleteProfile() {
+  return (
+    <div
+      className="flex flex-col items-center text-xl px-5 my-2"
+      style={{ margin: "auto" }}
+    >
+      <h1 className="text-secondary2-100 logo text-7xl m-1">Delete Profile</h1>
+      <div className="flex flex-col bg-secondary-100 p-5 rounded-2xl items-center">
+        <p>Are you sure you want this profile</p>
+        <div className="flex flex-row">
+          <button className="bg-red-500 hover:bg-red-700 p-2.5 rounded-xl m-4">
+            Delete Profile
+          </button>
+          <button className="bg-blue-500 hover:bg-blue-700 p-2.5 rounded-xl m-4">
+            Cancel
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default DeleteProfile;

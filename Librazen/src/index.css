@@ -1,0 +1,24 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary-100: #000814;
+  --color-primary2-100: #001d3d;
+  --color-secondary-100: #003566;
+  --color-secondary-100: #ffc300;
+  --color-tertiary-100: #ffd60a;
+}
+
+:root {
+  font-family: Aerial, system-ui;
+  line-height: 1.5;
+  font-weight: 500;
+
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
