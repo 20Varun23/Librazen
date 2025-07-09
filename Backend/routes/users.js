@@ -12,7 +12,6 @@ const getUserData = require("../helpers/getUserData.js");
 router.get(
   "/leaderboard",
   wrapAsync(async (req, res) => {
-    console.log("getting request");
     const { data, error } = await supabase
       .from("User")
       .select("name,books_read")
@@ -68,21 +67,20 @@ router.post(
 );
 
 //GET one user
-router.get(
+router.post(
   "/dashboard",
   wrapAsync(async (req, res) => {
-    console.log("Am here");
     const email = getUserData(req);
 
     if (!email) {
       throw new Error("no token");
     }
 
-    console.log(email);
     const { data, error } = await supabase
       .from("User")
       .select("name,age,books_read,email")
-      .eq("email", email);
+      .eq("email", email)
+      .single();
 
     if (error) {
       throw error;
@@ -92,6 +90,31 @@ router.get(
 
     if (error) throw Error(error.message, 500);
     return res.status(httpCodes.success).json(data);
+  })
+);
+
+//GET OVERDUE of user
+router.post(
+  "/overdue",
+  wrapAsync(async (req, res) => {
+    const email = getUserData(req);
+
+    if (!email) {
+      throw new Error("no token");
+    }
+
+    const { data, error } = await supabase
+      .from("Borrowings")
+      .select("overdue")
+      .eq("email", email);
+
+    let amt = 0;
+
+    for (let el of data) {
+      amt += el.overdue;
+    }
+
+    res.status(httpCodes.success).send(amt);
   })
 );
 
@@ -106,8 +129,7 @@ router.post(
     const salt = await bcrypt.genSalt(10);
     const hashedPass = await bcrypt.hash(user.password, salt);
 
-    //console.log(user);
-    const { data, error } = await supabase
+    const { error } = await supabase
       .from("User")
       .insert([{ ...user, password: hashedPass }])
       .select()
@@ -122,7 +144,6 @@ router.post(
 router.patch(
   "/",
   wrapAsync(async (req, res) => {
-    //const { email } = req.params;
     const email = getUserData(req);
     if (!email) {
       throw new Error("no token");

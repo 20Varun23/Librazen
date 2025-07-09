@@ -8,11 +8,38 @@
   --color-tertiary-100: #ffd60a;
 }
 
+Link {
+  text-decoration: none;
+}
+
+.typewriter h1 {
+  overflow: hidden;
+  border-right: 0.1em solid orange;
+  white-space: nowrap;
+  margin: 1 auto;
+  animation: typing 3s steps(40, end), blink-caret 0.75s step-end infinite;
+}
+
 .logo {
   font-family: "New Rocker", system-ui;
   font-weight: 400;
 }
 
-Link {
-  text-decoration: none;
+@keyframes typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes blink-caret {
+  from,
+  to {
+    border-color: transparent;
+  }
+  50% {
+    border-color: orange;
+  }
 }

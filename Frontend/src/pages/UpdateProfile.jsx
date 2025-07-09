@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 //import { useNavigate } from "react-router";
 import axios from "axios";
+import toast from "react-hot-toast";
 
 function UpdateProfile() {
   //const navigate = useNavigate();
@@ -10,17 +11,14 @@ function UpdateProfile() {
   useEffect(() => {
     async function getUser() {
       try {
-        const res = await axios.get(`http://localhost:8080/users/dashboard`, {
-          withCredentials: true,
-        });
-
-        if (res.error) {
-          throw res.error;
-        }
-
-        console.log(res.data[0]);
-
-        setUser(res.data[0]);
+        const { data } = await axios.post(
+          `http://localhost:8080/users/dashboard`,
+          {},
+          {
+            withCredentials: true,
+          }
+        );
+        setUser(data);
       } catch (err) {
         console.log(err);
         toast.error("reload the page again");

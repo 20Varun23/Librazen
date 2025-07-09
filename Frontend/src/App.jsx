@@ -1,10 +1,14 @@
 import "./App.css";
+import BarGraph from "./components/BarGraph";
 function App() {
   return (
     <div className="flex flex-col items-center text-xl px-5">
-      <h1 className="text-secondary2-100 logo text-8xl my-2">
-        Welcome to Librazen
-      </h1>
+      <div className="typewriter">
+        <h1 className="text-secondary2-100 logo  text-8xl my-2">
+          Welcome to Librazen
+        </h1>
+      </div>
+
       <div className="bg-secondary-100 p-4 rounded-2xl ">
         <p className="">
           We are delighted to have you here and excited to introduce you to our
@@ -21,38 +25,47 @@ function App() {
           information and adventure, right at your fingertips.
         </p>
       </div>
-      <div className="flex flex-col text-center bg-secondary-100 my-2 min-w-[50%] rounded-2xl">
-        <div>
-          <div className="my-2">The genre of books we have</div>
+      <div className="flex flex-row items-center text-3xl">
+        <div className="flex flex-col w-[20%] items-center mx-10">
+          <div className="bg-secondary-100 text-secondary2-100 logo  text-center w-[100%] p-3 rounded-2xl my-2">
+            Mystery
+          </div>{" "}
+          <div className="text-secondary-100 bg-secondary2-100 logo text-center w-[100%]  p-3 rounded-2xl my-2">
+            Literary Fiction
+          </div>{" "}
+          <div className="bg-secondary-100 text-secondary2-100 logo text-center w-[100%]  p-3 rounded-2xl my-2">
+            Historical Fiction
+          </div>
+          <div className="text-secondary-100 bg-secondary2-100 logo text-center w-[100%]  p-3 rounded-2xl my-2">
+            Contemporary Fiction
+          </div>{" "}
         </div>
-        <div>
-          <div className="my-2">
-            <ul>
-              <li>
-                <u>Fiction</u>
-              </li>
-              <li>Contemporary Fiction</li>
-              <li>Historical Fiction</li>
-              <li>Literary Fiction</li>
-              <li>Mystery</li>
-            </ul>
+
+        <div className="flex flex-col w-[72%] items-center">
+          <div className="typewriter">
+            <h1 className="text-secondary2-100 logo text-6xl my-4">
+              Genre of Books
+            </h1>
           </div>
-          <div className="my-2">
-            <ul>
-              <li>
-                <u>Non-Fiction</u>
-              </li>
-              <li>Biography</li>
-              <li>Memoir</li>
-              <li>Self-Help</li>
-              <li>Health & Wellness</li>
-            </ul>
+          <BarGraph />
+        </div>
+
+        <div className="flex flex-col w-[20%] items-center mx-10">
+          <div className="text-secondary-100 bg-secondary2-100 logo text-center w-[100%]  p-3 rounded-2xl my-2">
+            Biography
+          </div>{" "}
+          <div className="bg-secondary-100 text-secondary2-100 logo text-center w-[100%]  p-3 rounded-2xl my-2">
+            Memoir
           </div>
-          <div>
-            <div className="my-2">And much more...</div>
+          <div className="text-secondary-100 bg-secondary2-100 logo text-center w-[100%]  p-3 rounded-2xl my-2">
+            Self-Help
+          </div>{" "}
+          <div className="bg-secondary-100 text-secondary2-100 logo text-center w-[100%]  p-3 rounded-2xl my-2">
+            Health & Wellness
           </div>
         </div>
       </div>
+      <br />
     </div>
   );
 }

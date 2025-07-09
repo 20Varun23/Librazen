@@ -77,7 +77,7 @@ function NavBar() {
                     Leaderboard
                   </p>
                 </a>
-                <a href="/logout" className="mx-2">
+                <a href="/dashboard" className="mx-2">
                   <p className="justify-self-end text-lg text-primary-100 bg-amber-600 p-1 rounded-lg border-2">
                     Dashboard
                   </p>

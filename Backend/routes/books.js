@@ -3,7 +3,6 @@ const wrapAsync = require("../helpers/wrapAync");
 const supabase = require("../supabaseClient");
 const router = express.Router({ mergeParams: true });
 const httpCodes = require("../helpers/httpCodes.js");
-//const router = express();
 const getAdminData = require("../helpers/getAdminData.js");
 
 //GET all books
@@ -16,6 +15,40 @@ router.get(
   })
 );
 
+const gIdx = {
+  Mystery: 0,
+  "Literary Fiction": 1,
+  "Historical Fiction": 2,
+  "Contemporary Fiction": 3,
+  Biography: 4,
+  Memoir: 5,
+  "Self-Help": 6,
+  "Health & Wellness": 7,
+};
+
+//GRAPH DATA for books
+router.get(
+  "/graph",
+  wrapAsync(async (req, res) => {
+    const { data, error } = await supabase.from("Books").select();
+
+    if (error) {
+      throw new Error("couldn't get graph data");
+    }
+
+    console.log(data);
+
+    let send = [0, 0, 0, 0, 0, 0, 0, 0];
+
+    for (let el of data) {
+      let idx = gIdx[el.genre];
+      send[idx]++;
+    }
+
+    res.status(httpCodes.success).json({ send });
+  })
+);
+
 //GET one book
 router.get(
   "/:id",
@@ -25,7 +58,6 @@ router.get(
     const { data, error } = await supabase.from("Books").select().eq("id", id);
 
     if (error) throw Error(error.message, 500);
-    console.log(data);
     res.status(httpCodes.success).json(data);
   })
 );
@@ -41,7 +73,6 @@ router.post(
     }
 
     const { book } = req.body;
-    console.log(book);
     const { error } = await supabase.from("Books").insert({ ...book });
 
     if (error) throw Error(error.message, 500);
@@ -59,10 +90,7 @@ router.patch(
       throw new Error("admin token not present");
     }
 
-    console.log("email: " + email);
-
     const { id } = req.params;
-    console.log(id);
 
     const { book } = req.body;
 
@@ -86,10 +114,8 @@ router.delete(
       throw new Error("admin token not present");
     }
 
-    console.log("email: " + email);
-
     const { id } = req.params;
-    const { data, error } = await supabase.from("Books").delete().eq("id", id);
+    const { error } = await supabase.from("Books").delete().eq("id", id);
 
     if (error) throw Error(error.message, 500);
     res.status(httpCodes.success).send("book deleted");

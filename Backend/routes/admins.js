@@ -7,6 +7,7 @@ const httpCodes = require("../helpers/httpCodes.js");
 const jwt = require("jsonwebtoken");
 const getAdminData = require("../helpers/getAdminData.js");
 
+//LOGIN admin
 router.post(
   "/login",
   wrapAsync(async (req, res) => {
@@ -48,6 +49,7 @@ router.post(
   })
 );
 
+//ISSUE of book
 router.post(
   "/issue/:id",
   wrapAsync(async (req, res) => {
@@ -60,8 +62,6 @@ router.post(
     const { id } = req.params;
     const { email } = req.body;
 
-    console.log(email);
-
     const dbRes = await supabase
       .from("User")
       .select("name")
@@ -70,8 +70,6 @@ router.post(
 
     const user = dbRes.data;
     const err1 = dbRes.error;
-
-    console.log(user);
 
     if (err1) {
       throw new Error("Error occured");
@@ -111,8 +109,6 @@ router.post(
       day: "2-digit",
     });
 
-    console.log(formattedDate);
-
     const { errorInsert } = await supabase
       .from("Borrowings")
       .insert({ email: email, id: id, due: formattedDate });
@@ -122,14 +118,10 @@ router.post(
       throw new Error("could not insert value : " + errorInsert.message);
     }
 
-    console.log(errorInsert);
-
     const { errorBookIssued } = await supabase
       .from("Books")
       .update({ issued: true })
       .eq("id", id);
-
-    console.log(errorBookIssued);
 
     if (errorBookIssued) {
       console.log(errorBookIssued);
@@ -140,6 +132,7 @@ router.post(
   })
 );
 
+//GET INFO of issuer
 router.get(
   "/issuer/:id",
   wrapAsync(async (req, res) => {
@@ -150,8 +143,6 @@ router.get(
     }
 
     const { id } = req.params;
-
-    console.log("got called");
 
     const res1 = await supabase
       .from("Borrowings")
@@ -172,12 +163,12 @@ router.get(
     if (error) {
       throw new Error("could not full user");
     }
-    console.log(data);
 
     res.status(httpCodes.success).json(data);
   })
 );
 
+//RETURN of book
 router.post(
   "/return/:id",
   wrapAsync(async (req, res) => {
@@ -215,10 +206,6 @@ router.post(
       throw new Error("Could not be returned, db problem");
     }
 
-    console.log(booksRead);
-
-    console.log("email : " + email);
-
     const incReading = await supabase
       .from("User")
       .update({ books_read: booksRead + 1 })
@@ -243,6 +230,7 @@ router.post(
   })
 );
 
+//LOGOUT of admin
 router.post(
   "/logout",
   wrapAsync((req, res) => {

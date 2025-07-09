@@ -7,26 +7,46 @@ import { Link } from "react-router";
 
 function Dashboard() {
   const [user, setUser] = useState(null);
+  const [overdue, setOverdue] = useState(null);
 
   useEffect(() => {
     async function getUser() {
       try {
-        const res = await axios.get(`http://localhost:8080/users/dashboard`, {
-          withCredentials: true,
-        });
+        const { data } = await axios.post(
+          `http://localhost:8080/users/dashboard`,
+          {},
+          {
+            withCredentials: true,
+          }
+        );
 
-        if (res.error) {
-          throw res.error;
-        }
+        //console.log(res.data[0]);
 
-        console.log(res.data[0]);
-
-        setUser(res.data[0]);
+        setUser(data);
       } catch (err) {
         console.log(err);
         toast.error("reload the page again");
       }
     }
+
+    async function getOverdue() {
+      try {
+        const res = await axios.post(
+          `http://localhost:8080/users/overdue`,
+          {},
+          {
+            withCredentials: true,
+          }
+        );
+
+        setOverdue(res.data);
+      } catch (err) {
+        console.log(err);
+        toast.error("Sorry could not get overdue");
+      }
+    }
+
+    getOverdue();
 
     getUser();
   }, []);
@@ -56,6 +76,16 @@ function Dashboard() {
                   <td className="p-2">No. of books read:</td>
                   <td className="p-2">{user.books_read}</td>
                 </tr>
+                <>
+                  {overdue ? (
+                    <tr className="text-red-500">
+                      <td className="p-2">Overdue left:</td>
+                      <td className="p-2">Rs. {overdue}</td>
+                    </tr>
+                  ) : (
+                    ""
+                  )}
+                </>
               </tbody>
             </table>
           </div>
