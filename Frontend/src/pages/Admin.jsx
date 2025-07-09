@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
+import axios from "axios";
+import toast from "react-hot-toast";
 
 function Admin() {
   const [admin, setAdmin] = useState({
@@ -6,8 +8,21 @@ function Admin() {
     password: "",
   });
 
-  //[ ] : loginAdmin()
+  async function loginAdmin(e) {
+    e.preventDefault();
+    try {
+      await axios.post("http://localhost:8080/admin/login", admin, {
+        withCredentials: true,
+      });
+      toast.success("Admin logged in");
+      window.location.href = "/";
+    } catch (err) {
+      console.log(err);
+      toast.error("some error occured here");
+    }
+  }
 
+  const formRef = useRef(null);
   return (
     <div
       className="flex flex-col items-center text-xl px-5 my-2"
@@ -15,7 +30,10 @@ function Admin() {
     >
       <h1 className="text-secondary2-100 logo text-7xl">Admin login</h1>
       <br />
-      <form className="flex flex-col bg-secondary-100 p-10 rounded-2xl items-center">
+      <form
+        className="flex flex-col bg-secondary-100 p-10 rounded-2xl items-center"
+        ref={formRef}
+      >
         <label htmlFor="">Email</label>
         <input
           type="email"
@@ -30,6 +48,7 @@ function Admin() {
         <p class="invisible peer-invalid:visible text-base">
           Please provide a valid email address.
         </p>
+        <br />
         <label htmlFor="">Password</label>
         <input
           type="password"

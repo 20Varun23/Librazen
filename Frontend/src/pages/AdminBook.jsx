@@ -4,7 +4,8 @@ import { useEffect } from "react";
 import { useState } from "react";
 import BookCard from "../components/bookCard";
 import toast from "react-hot-toast";
-function Booklist() {
+
+function AdminBook() {
   const [books, setBooks] = useState([]);
 
   useEffect(() => {
@@ -35,7 +36,7 @@ function Booklist() {
           <br />
           <div className="flex flex-row justify-center flex-wrap">
             {books.map((book) => (
-              <BookCard key={book.id} book={book} />
+              <BookCard key={book.id} book={book} editPage={true} />
             ))}
           </div>
         </div>
@@ -48,4 +49,4 @@ function Booklist() {
   );
 }
 
-export default Booklist;
+export default AdminBook;

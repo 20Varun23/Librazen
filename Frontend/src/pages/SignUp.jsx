@@ -1,12 +1,38 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
+import { useNavigate } from "react-router";
+import axios from "axios";
+import toast from "react-hot-toast";
 
 function SignUp() {
+  const navigate = useNavigate();
+
   const [user, setUser] = useState({
     email: "",
     password: "",
     name: "",
     age: null,
   });
+
+  async function postUser(e) {
+    e.preventDefault();
+
+    try {
+      console.log(user);
+      const res = await axios.post(`http://localhost:8080/users`, { user });
+      if (res.error) {
+        console.log(res.error);
+        toast.error("could not sign up user");
+        return;
+      }
+      toast.success("user got added");
+      navigate("/login");
+    } catch (err) {
+      console.log(err);
+      toast.error("something went wrong there");
+    }
+  }
+
+  const formRef = useRef(null);
 
   return (
     <div
@@ -15,11 +41,14 @@ function SignUp() {
     >
       <h1 className="text-secondary2-100 logo text-7xl">Sign Up</h1>
       <br />
-      <form className="flex flex-col bg-secondary-100 p-10 rounded-2xl items-center">
+      <form
+        className="flex flex-col bg-secondary-100 p-10 rounded-2xl items-center"
+        ref={formRef}
+      >
         <label htmlFor="name">Name</label>
         <input
           type="text"
-          className="bg-white text-black text-center peer"
+          className="bg-white text-black text-center peer/name"
           name="name"
           id="name"
           value={user.name}
@@ -28,12 +57,14 @@ function SignUp() {
           }}
           required
         />
-        <p class="invisible peer-invalid:visible text-base">Enter the name</p>
+        <p className="invisible peer-invalid/name:visible text-base">
+          Enter the name
+        </p>
         <br />
         <label htmlFor="email">Email</label>
         <input
           type="email"
-          className="bg-white text-black text-center peer"
+          className="bg-white text-black text-center peer/email"
           name="email"
           id="email"
           value={user.email}
@@ -42,7 +73,7 @@ function SignUp() {
           }}
           required
         />
-        <p class="invisible peer-invalid:visible text-base">
+        <p className="invisible peer-invalid/email:visible text-base">
           Enter valid email
         </p>
 
@@ -50,7 +81,7 @@ function SignUp() {
         <label htmlFor="password">Password</label>
         <input
           type="password"
-          className="bg-white text-black text-center"
+          className="bg-white text-black text-center peer/password"
           id="password"
           name="password"
           value={user.password}
@@ -60,14 +91,14 @@ function SignUp() {
           required
           minLength={8}
         />
-        <p class="invisible peer-invalid:visible text-base">
+        <p className="invisible peer-invalid/password:visible text-base">
           Password should be atleast 8 characters
         </p>
         <br />
         <label htmlFor="age">Age</label>
         <input
           type="number"
-          className="bg-white text-black text-center"
+          className="bg-white text-black text-center peer/age"
           id="age"
           name="password"
           value={user.age}
@@ -77,13 +108,13 @@ function SignUp() {
           required
           min={18}
         />
-        <p class="invisible peer-invalid:visible text-base">
+        <p className="invisible peer-invalid/age:visible text-base">
           Minimum age is 18
         </p>
         <button
           className="bg-secondary2-100 border-2 rounded-2xl text-black px-2 py-1.5 my-2"
           onClick={(e) => {
-            loginAdmin(e);
+            postUser(e);
           }}
         >
           sign up
@@ -94,4 +125,3 @@ function SignUp() {
 }
 
 export default SignUp;
-//[ ]: sign up

@@ -1,19 +1,18 @@
 import React from "react";
 import toast from "react-hot-toast";
 import axios from "axios";
-function Logout() {
+
+function AdminLogout() {
   async function logout(e) {
     e.preventDefault();
     try {
-      const res = axios.post(
-        "http://localhost:8080/users/logout",
+      await axios.post(
+        "http://localhost:8080/admin/logout",
         {},
-        {
-          withCredentials: true,
-        }
+        { withCredentials: true }
       );
       window.location.href = "/";
-      toast.success("you logged out");
+      toast.success("you are logged out");
     } catch (err) {
       console.log(err);
       toast.error("some error there");
@@ -37,16 +36,13 @@ function Logout() {
           >
             Logout
           </button>
-          <a
-            className="bg-blue-500 hover:bg-blue-700 p-2.5 rounded-xl m-4"
-            href="/dashboard"
-          >
+          <button className="bg-blue-500 hover:bg-blue-700 p-2.5 rounded-xl m-4">
             Cancel
-          </a>
+          </button>
         </div>
       </div>
     </div>
   );
 }
 
-export default Logout;
+export default AdminLogout;

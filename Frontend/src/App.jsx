@@ -1,5 +1,4 @@
 import "./App.css";
-
 function App() {
   return (
     <div className="flex flex-col items-center text-xl px-5">

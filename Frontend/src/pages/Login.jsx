@@ -1,11 +1,33 @@
-import React, { useState } from "react";
-//[ ]: 1. add Login funcitonality
+import React, { useRef, useState } from "react";
+import axios from "axios";
+import toast from "react-hot-toast";
 
 function Login() {
   const [user, setUser] = useState({
     email: "",
     password: "",
   });
+
+  async function loginUser(e) {
+    e.preventDefault();
+
+    try {
+      const res = await axios.post("http://localhost:8080/users/login", user, {
+        withCredentials: true,
+      });
+      if (res.error) {
+        toast.error(res.error);
+        return;
+      }
+      toast.success("Admin logged in");
+      window.location.href = "/dashboard";
+    } catch (err) {
+      console.log(err);
+      toast.error("something went wrong");
+    }
+  }
+
+  const formRef = useRef(null);
 
   return (
     <div
@@ -14,9 +36,13 @@ function Login() {
     >
       <h1 className="text-secondary2-100 logo text-7xl">User login</h1>
       <br />
-      <form className="flex flex-col bg-secondary-100 p-10 rounded-2xl items-center">
-        <label htmlFor="">Email</label>
+      <form
+        className="flex flex-col bg-secondary-100 p-10 rounded-2xl items-center"
+        ref={formRef}
+      >
+        <label htmlFor="email">Email</label>
         <input
+          id="email"
           type="email"
           className="bg-white text-black peer"
           name="email"
@@ -26,7 +52,7 @@ function Login() {
           }}
           required
         />
-        <p class="invisible peer-invalid:visible text-base">
+        <p className="invisible peer-invalid:visible text-base">
           Please provide a valid email address.
         </p>
         <br />
@@ -42,7 +68,7 @@ function Login() {
           required
           minLength={8}
         />
-        <p class="invisible peer-invalid:visible text-base">
+        <p className="invisible peer-invalid:visible text-base">
           Password should be atleast 8 characters
         </p>
         <button
