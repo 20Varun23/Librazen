@@ -1,0 +1,19 @@
+services:
+  react:
+    build:
+      context: ./Frontend
+      dockerfile: Dockerfile
+    ports:
+      - "5173:5173"
+    restart: always
+    depends_on:
+      - express
+
+  express:
+    container_name: express
+    build:
+      context: ./Backend
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    restart: always

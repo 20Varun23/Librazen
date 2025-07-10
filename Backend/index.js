@@ -18,6 +18,11 @@ app.use(express.urlencoded({ extended: true }));
 const cookieParser = require("cookie-parser");
 app.use(cookieParser());
 
+app.use("/", (req, res, next) => {
+  console.log("hello");
+  return next();
+});
+
 app.use("/users", users);
 app.use("/admin", admins);
 app.use("/books", books);
