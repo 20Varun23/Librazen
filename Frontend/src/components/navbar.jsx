@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router";
 
 function NavBar() {
   const [userLogged, setUserLogged] = useState(false);
@@ -23,93 +24,93 @@ function NavBar() {
   return (
     <div className="text-xs flex flex-row justify-between items-center p-2 bg-secondary2-100 text-black">
       {/* left */}
-      <a href="/">
+      <Link to="/">
         <p className="justify-self-start text-3xl logo text-primary2-100">
           Librazen
         </p>
-      </a>
+      </Link>
 
       {/* right */}
       <>
         {!adminLogged && !userLogged ? (
           <div className="flex flex-row justify-self-end">
-            <a href="/login">
+            <Link to="/login">
               <p className="justify-self-end text-lg text-primary-100 bg-amber-600 p-1 rounded-lg border-2">
                 Login
               </p>
-            </a>
+            </Link>
             &nbsp; &nbsp; &nbsp;
-            <a href="/admin">
+            <Link to="/admin">
               <p className="justify-self-end text-lg text-primary-100 bg-amber-600 p-1 rounded-lg border-2">
                 Admin
               </p>
-            </a>
+            </Link>
             &nbsp; &nbsp; &nbsp;
-            <a href="/signup">
+            <Link to="/signup">
               <p className="justify-self-end text-lg text-primary-100 bg-amber-600 p-1 rounded-lg border-2">
                 Sign Up
               </p>
-            </a>
+            </Link>
             &nbsp; &nbsp; &nbsp;
-            <a href="/leader">
+            <Link to="/leader">
               <p className="justify-self-end text-lg text-primary-100 bg-amber-600 p-1 rounded-lg border-2">
                 Leaderboard
               </p>
-            </a>
+            </Link>
             &nbsp; &nbsp; &nbsp;
-            <a href="/booklist">
+            <Link to="/booklist">
               <p className="justify-self-end text-lg text-primary-100 bg-amber-600 p-1 rounded-lg border-2">
                 Booklist
               </p>
-            </a>
+            </Link>
           </div>
         ) : (
           <>
             {userLogged ? (
               <div className="flex flex-row justify-self-end">
-                <a href="/logout" className="mx-2">
+                <Link to="/logout" className="mx-2">
                   <p className="justify-self-end text-lg text-primary-100 bg-amber-600 p-1 rounded-lg border-2">
                     Logout
                   </p>
-                </a>
-                <a href="/leader" className="mx-2">
+                </Link>
+                <Link to="/leader" className="mx-2">
                   <p className="justify-self-end text-lg text-primary-100 bg-amber-600 p-1 rounded-lg border-2">
                     Leaderboard
                   </p>
-                </a>
-                <a href="/dashboard" className="mx-2">
+                </Link>
+                <Link to="/dashboard" className="mx-2">
                   <p className="justify-self-end text-lg text-primary-100 bg-amber-600 p-1 rounded-lg border-2">
                     Dashboard
                   </p>
-                </a>
-                <a href="/updateP" className="mx-2">
+                </Link>
+                <Link to="/updateP" className="mx-2">
                   <p className="justify-self-end text-lg text-primary-100 bg-amber-600 p-1 rounded-lg border-2">
                     Update profile
                   </p>
-                </a>
-                <a href="/booklist" className="mx-2">
+                </Link>
+                <Link to="/booklist" className="mx-2">
                   <p className="justify-self-end text-lg text-primary-100 bg-amber-600 p-1 rounded-lg border-2">
                     BookList
                   </p>
-                </a>
+                </Link>
               </div>
             ) : (
               <div className="flex flex-row justify-self-end">
-                <a href="/addBook" className="mx-2">
+                <Link to="/addBook" className="mx-2">
                   <p className="justify-self-end text-lg text-primary-100 bg-amber-600 p-1 rounded-lg border-2">
                     Add Book
                   </p>
-                </a>
-                <a href="/adminBook" className="mx-2">
+                </Link>
+                <Link to="/adminBook" className="mx-2">
                   <p className="justify-self-end text-lg text-primary-100 bg-amber-600 p-1 rounded-lg border-2">
                     View Books
                   </p>
-                </a>
-                <a href="/adminLogout" className="mx-2">
+                </Link>
+                <Link to="/adminLogout" className="mx-2">
                   <p className="justify-self-end text-lg text-primary-100 bg-amber-600 p-1 rounded-lg border-2">
                     Logout
                   </p>
-                </a>
+                </Link>
               </div>
             )}
           </>

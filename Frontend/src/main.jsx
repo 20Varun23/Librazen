@@ -25,8 +25,8 @@ import ReturnBook from "./pages/ReturnBook.jsx";
 
 createRoot(document.getElementById("root")).render(
   <div className="flex flex-col min-h-[100vh] w-[100vw]">
-    <NavBar />
     <BrowserRouter>
+      <NavBar />
       <Routes>
         <Route path="/" element={<App />} />
         <Route path="/login" element={<Login />} />

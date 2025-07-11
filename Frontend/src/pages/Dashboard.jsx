@@ -92,24 +92,24 @@ function Dashboard() {
           </div>
           <br />
           <div className="flex flex-row">
-            <a
+            <Link
               className="bg-blue-500 hover:bg-blue-800 p-2 rounded-2xl mx-2"
-              href="/logout"
+              to="/logout"
             >
               Logout
-            </a>
-            <a
+            </Link>
+            <Link
               className="bg-red-500 hover:bg-red-700 p-2 rounded-2xl mx-2"
-              href="/delP"
+              to="/delP"
             >
               Delete Profile
-            </a>
-            <a
+            </Link>
+            <Link
               className="bg-green-500 hover:bg-green-700 p-2 rounded-2xl mx-2"
-              href="/updateP"
+              to="/updateP"
             >
               Edit Profile
-            </a>
+            </Link>
           </div>
         </div>
       ) : (

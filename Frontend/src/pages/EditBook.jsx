@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
-import { useNavigate, useParams } from "react-router";
+import { Link, useNavigate, useParams } from "react-router";
 import backend_link from "../../environment.js";
 
 function EditBook() {
@@ -127,12 +127,12 @@ function EditBook() {
             >
               Edit Book
             </button>
-            <a
+            <Link
               className="bg-secondary2-100 border-2 rounded-2xl text-black px-2 py-1.5 my-2"
-              href="/adminBook"
+              to="/adminBook"
             >
               Cancel
-            </a>
+            </Link>
           </form>
         </div>
       ) : (

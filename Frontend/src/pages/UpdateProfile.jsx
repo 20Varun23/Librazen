@@ -3,6 +3,7 @@ import React, { useEffect, useRef, useState } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
 import backend_link from "../../environment.js";
+import { Link } from "react-router";
 
 function UpdateProfile() {
   //const navigate = useNavigate();
@@ -137,12 +138,12 @@ function UpdateProfile() {
           >
             Update profile
           </button>
-          <a
+          <Link
             className="bg-secondary2-100 border-2 rounded-2xl text-black px-2 py-1.5 my-2"
-            href="/dashboard"
+            to="/dashboard"
           >
             Cancel
-          </a>
+          </Link>
         </div>
       ) : (
         ""

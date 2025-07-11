@@ -2,6 +2,7 @@ import React from "react";
 import toast from "react-hot-toast";
 import axios from "axios";
 import backend_link from "../../environment.js";
+import { Link } from "react-router";
 
 function Logout() {
   async function logout(e) {
@@ -39,12 +40,12 @@ function Logout() {
           >
             Logout
           </button>
-          <a
+          <Link
             className="bg-blue-500 hover:bg-blue-700 p-2.5 rounded-xl m-4"
-            href="/dashboard"
+            to="/dashboard"
           >
             Cancel
-          </a>
+          </Link>
         </div>
       </div>
     </div>

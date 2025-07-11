@@ -10,7 +10,7 @@ function SignUp() {
     email: "",
     password: "",
     name: "",
-    age: null,
+    age: 18,
   });
 
   async function postUser(e) {

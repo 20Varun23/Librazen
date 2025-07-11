@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
-import { useNavigate, useParams } from "react-router";
+import { Link, useNavigate, useParams } from "react-router";
 import backend_link from "../../environment.js";
 
 function ReturnBook() {
@@ -82,12 +82,12 @@ function ReturnBook() {
             >
               Return book
             </button>
-            <a
+            <Link
               className="m-2 p-2 bg-red-500 hover:bg-red-700 rounded-xl"
-              href="/adminBook"
+              to="/adminBook"
             >
               Cancel
-            </a>
+            </Link>
           </div>
         </div>
       ) : (

@@ -46,7 +46,7 @@ function Admin() {
           }}
           required
         />
-        <p class="invisible peer-invalid:visible text-base">
+        <p className="invisible peer-invalid:visible text-base">
           Please provide a valid email address.
         </p>
         <br />
