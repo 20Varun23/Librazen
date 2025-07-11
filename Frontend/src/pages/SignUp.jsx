@@ -2,7 +2,7 @@ import React, { useState, useRef } from "react";
 import { useNavigate } from "react-router";
 import axios from "axios";
 import toast from "react-hot-toast";
-
+import backend_link from "../../environment.js";
 function SignUp() {
   const navigate = useNavigate();
 
@@ -18,7 +18,7 @@ function SignUp() {
 
     try {
       console.log(user);
-      const res = await axios.post(`http://localhost:8080/users`, { user });
+      const res = await axios.post(`${backend_link}/users`, { user });
       if (res.error) {
         console.log(res.error);
         toast.error("could not sign up user");

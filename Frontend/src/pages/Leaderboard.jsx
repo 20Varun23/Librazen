@@ -4,6 +4,7 @@ import Table from "../components/table";
 import { useState } from "react";
 import { useEffect } from "react";
 import toast from "react-hot-toast";
+import backend_link from "../../environment.js";
 
 function Leaderboard() {
   const [users, setUsers] = useState([]);
@@ -11,7 +12,7 @@ function Leaderboard() {
   useEffect(() => {
     async function getLeaderBoard() {
       try {
-        const res = await axios.get(`http://localhost:8080/users/leaderboard`);
+        const res = await axios.get(`${backend_link}/users/leaderboard`);
         if (res.error) {
           throw res.error;
         }

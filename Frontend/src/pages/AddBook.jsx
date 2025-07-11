@@ -2,6 +2,7 @@ import React, { useRef, useState } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router";
+import backend_link from "../../environment.js";
 
 function AddBook() {
   const navigate = useNavigate();
@@ -18,7 +19,7 @@ function AddBook() {
 
     try {
       const res = await axios.post(
-        "http://localhost:8080/books",
+        `${backend_link}/books`,
         { book },
         {
           withCredentials: true,

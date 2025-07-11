@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useEffect } from "react";
 import toast from "react-hot-toast";
 import { Link } from "react-router";
+import backend_link from "../../environment.js";
 
 function Dashboard() {
   const [user, setUser] = useState(null);
@@ -13,7 +14,7 @@ function Dashboard() {
     async function getUser() {
       try {
         const { data } = await axios.post(
-          `http://localhost:8080/users/dashboard`,
+          `${backend_link}/users/dashboard`,
           {},
           {
             withCredentials: true,
@@ -32,7 +33,7 @@ function Dashboard() {
     async function getOverdue() {
       try {
         const res = await axios.post(
-          `http://localhost:8080/users/overdue`,
+          `${backend_link}/users/overdue`,
           {},
           {
             withCredentials: true,

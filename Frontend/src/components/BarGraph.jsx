@@ -14,6 +14,7 @@ import { useEffect } from "react";
 import { useState } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
+import backend_link from "../../environment";
 
 ChartJS.register(
   CategoryScale,
@@ -41,7 +42,7 @@ function BarGraph() {
   useEffect(() => {
     async function getGraphData() {
       try {
-        const res = await axios.get("http://localhost:8080/books/graph");
+        const res = await axios.get(`${backend_link}/books/graph`);
         const { send } = res.data;
         setBooksData(send);
       } catch (err) {

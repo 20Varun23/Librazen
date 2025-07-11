@@ -1,6 +1,7 @@
 import React, { useRef, useState } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
+import backend_link from "../../environment.js";
 
 function Login() {
   const [user, setUser] = useState({
@@ -12,7 +13,7 @@ function Login() {
     e.preventDefault();
 
     try {
-      const res = await axios.post("http://localhost:8080/users/login", user, {
+      const res = await axios.post(`${backend_link}/users/login`, user, {
         withCredentials: true,
       });
       if (res.error) {

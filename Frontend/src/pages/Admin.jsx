@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
+import backend_link from "../../environment.js";
 
 function Admin() {
   const [admin, setAdmin] = useState({
@@ -11,7 +12,7 @@ function Admin() {
   async function loginAdmin(e) {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:8080/admin/login", admin, {
+      await axios.post(`${backend_link}/admin/login`, admin, {
         withCredentials: true,
       });
       toast.success("Admin logged in");

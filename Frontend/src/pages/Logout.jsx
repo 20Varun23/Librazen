@@ -1,12 +1,14 @@
 import React from "react";
 import toast from "react-hot-toast";
 import axios from "axios";
+import backend_link from "../../environment.js";
+
 function Logout() {
   async function logout(e) {
     e.preventDefault();
     try {
       const res = axios.post(
-        "http://localhost:8080/users/logout",
+        `${backend_link}/users/logout`,
         {},
         {
           withCredentials: true,

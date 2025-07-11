@@ -2,6 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router";
 import axios from "axios";
 import toast from "react-hot-toast";
+import backend_link from "../../environment.js";
 
 function DeleteProfile() {
   const navigate = useNavigate();
@@ -10,12 +11,12 @@ function DeleteProfile() {
     e.preventDefault();
 
     try {
-      await axios.delete("http://localhost:8080/users", {
+      await axios.delete(`${backend_link}/users`, {
         withCredentials: true,
       });
 
       await axios.post(
-        "http://localhost:8080/users/logout",
+        `${backend_link}/users/logout`,
         {},
         {
           withCredentials: true,

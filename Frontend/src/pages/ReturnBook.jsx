@@ -2,6 +2,8 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { useNavigate, useParams } from "react-router";
+import backend_link from "../../environment.js";
+
 function ReturnBook() {
   const [issuer, setIssuer] = useState(null);
 
@@ -11,12 +13,9 @@ function ReturnBook() {
   useEffect(() => {
     async function getIssuer() {
       try {
-        const { data } = await axios.get(
-          `http://localhost:8080/admin/issuer/${id}`,
-          {
-            withCredentials: true,
-          }
-        );
+        const { data } = await axios.get(`${backend_link}/admin/issuer/${id}`, {
+          withCredentials: true,
+        });
         console.log(data);
 
         setIssuer(data);
@@ -34,7 +33,7 @@ function ReturnBook() {
 
     try {
       await axios.post(
-        `http://localhost:8080/admin/return/${id}/`,
+        `${backend_link}/admin/return/${id}/`,
         { email: issuer.email, booksRead: issuer.books_read },
         {
           withCredentials: true,

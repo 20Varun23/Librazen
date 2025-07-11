@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { useNavigate, useParams } from "react-router";
+import backend_link from "../../environment.js";
 
 function EditBook() {
   const { id } = useParams();
@@ -11,7 +12,7 @@ function EditBook() {
   useEffect(() => {
     async function getBook() {
       try {
-        const res = await axios.get(`http://localhost:8080/books/${id}`);
+        const res = await axios.get(`${backend_link}/books/${id}`);
 
         if (res.error) {
           throw res.error;
@@ -29,7 +30,7 @@ function EditBook() {
   async function patchBook(e) {
     e.preventDefault();
     try {
-      await axios.patch(`http://localhost:8080/books/${id}`, { book });
+      await axios.patch(`${backend_link}/books/${id}`, { book });
       toast.success("Book edited");
       navigate("/adminBook");
     } catch (err) {

@@ -3,6 +3,7 @@ import toast from "react-hot-toast";
 import { useParams } from "react-router";
 import { useNavigate } from "react-router";
 import axios from "axios";
+import backend_link from "../../environment.js";
 
 function DeleteBook() {
   const { id } = useParams();
@@ -12,7 +13,7 @@ function DeleteBook() {
   async function deleteBook(e) {
     e.preventDefault();
     try {
-      const res = await axios.delete(`http://localhost:8080/books/${id}`);
+      const res = await axios.delete(`${backend_link}/books/${id}`);
       if (res.error) {
         throw res.error;
       }

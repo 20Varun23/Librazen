@@ -4,13 +4,15 @@ import { useEffect } from "react";
 import { useState } from "react";
 import BookCard from "../components/bookCard";
 import toast from "react-hot-toast";
+import backend_link from "../../environment.js";
+
 function Booklist() {
   const [books, setBooks] = useState([]);
 
   useEffect(() => {
     async function getLeaderBoard() {
       try {
-        const res = await axios.get(`http://localhost:8080/books`);
+        const res = await axios.get(`${backend_link}/books`);
         if (res.error) {
           throw res.error;
         }

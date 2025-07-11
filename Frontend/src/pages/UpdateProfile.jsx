@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 //import { useNavigate } from "react-router";
 import axios from "axios";
 import toast from "react-hot-toast";
+import backend_link from "../../environment.js";
 
 function UpdateProfile() {
   //const navigate = useNavigate();
@@ -12,7 +13,7 @@ function UpdateProfile() {
     async function getUser() {
       try {
         const { data } = await axios.post(
-          `http://localhost:8080/users/dashboard`,
+          `${backend_link}/users/dashboard`,
           {},
           {
             withCredentials: true,
@@ -33,7 +34,7 @@ function UpdateProfile() {
 
     try {
       const res = await axios.patch(
-        "http://localhost:8080/users",
+        `${backend_link}/user`,
         { user },
         {
           withCredentials: true,

@@ -3,6 +3,7 @@ import BookCard from "../components/bookCard";
 import axios from "axios";
 import { useNavigate, useParams } from "react-router";
 import toast from "react-hot-toast";
+import backend_link from "../../environment.js";
 
 function IssueBook() {
   const [email, setEmail] = useState("");
@@ -15,7 +16,7 @@ function IssueBook() {
 
     try {
       await axios.post(
-        `http://localhost:8080/admin/issue/${id}`,
+        `${backend_link}/admin/issue/${id}`,
         { email },
         {
           withCredentials: true,
