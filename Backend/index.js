@@ -5,10 +5,11 @@ const users = require("./routes/users.js");
 const books = require("./routes/books.js");
 const admins = require("./routes/admins.js");
 const cors = require("cors");
+const frontend_link = require("./environment.js");
 
 app.use(
   cors({
-    origin: "http://localhost:5173",
+    origin: `${frontend_link}`,
     credentials: true,
   })
 );
