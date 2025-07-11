@@ -57,7 +57,6 @@ router.post(
     res
       .status(httpCodes.success)
       .cookie("isLoggedIn", true, {
-        httpOnly: true,
         path: "/",
         secure: true,
         sameSite: "None",

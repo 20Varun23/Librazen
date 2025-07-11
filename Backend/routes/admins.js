@@ -40,7 +40,6 @@ router.post(
     res
       .status(httpCodes.success)
       .cookie("isAdmin", true, {
-        httpOnly: true,
         path: "/",
         secure: true,
         sameSite: "None",
