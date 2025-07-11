@@ -43,7 +43,9 @@ router.post(
       .cookie("admin", token, {
         httpOnly: true,
         path: "/",
-        sameSite: "Lax",
+        secure: true,
+        sameSite: "None",
+        path: "/",
       })
       .send("successfull");
   })

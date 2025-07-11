@@ -60,7 +60,9 @@ router.post(
       .cookie("user", token, {
         httpOnly: true,
         path: "/",
-        sameSite: "Lax",
+        secure: true,
+        sameSite: "None",
+        path: "/",
       })
       .send("successfull");
   })
