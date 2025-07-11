@@ -1,4 +1,4 @@
-let isProd = true;
+let isProd = false;
 let frontend_link;
 frontend_link = isProd
   ? `${process.env.FRONTEND_LINK}`

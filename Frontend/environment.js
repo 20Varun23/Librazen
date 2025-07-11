@@ -1,4 +1,4 @@
-let isProd = true;
+let isProd = false;
 let backend_link;
 export default backend_link = isProd
   ? `${import.meta.env.VITE_EXPRESS_LINK}`
