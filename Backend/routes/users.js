@@ -1,6 +1,5 @@
 const express = require("express");
 const router = express.Router({ mergeParams: true });
-const ExpressError = require("../helpers/ExpressError.js");
 const wrapAsync = require("../helpers/wrapAync.js");
 const supabase = require("../supabaseClient.js");
 const bcrypt = require("bcrypt");
