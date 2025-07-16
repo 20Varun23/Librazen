@@ -10,6 +10,7 @@ Librazn is Library Management System ment to aid in the day to day functionality
 
 ## Development Setup
 
+![alt text](assets/dockerWorking.png)
 To aid the development of the project among developers, the project is dockerized using node images from docker hub. To start the project, you need to setup docker and navigate to the root directory of the project and input the following command.
 
 ```
