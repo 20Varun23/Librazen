@@ -34,16 +34,13 @@ function UpdateProfile() {
     e.preventDefault();
 
     try {
-      const res = await axios.patch(
+      await axios.patch(
         `${backend_link}/user`,
         { user },
         {
           withCredentials: true,
         }
       );
-      if (res.error) {
-        throw res.error;
-      }
 
       window.location.href = "/dashboard";
       toast.success("user updated");

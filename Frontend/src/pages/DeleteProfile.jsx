@@ -24,7 +24,6 @@ function DeleteProfile() {
       );
 
       toast.success("User deleted successfully");
-      console.log("Came till here");
       window.location.href = "/";
     } catch (err) {
       console.log(err);

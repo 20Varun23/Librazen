@@ -13,9 +13,6 @@ function Leaderboard() {
     async function getLeaderBoard() {
       try {
         const res = await axios.get(`${backend_link}/users/leaderboard`);
-        if (res.error) {
-          throw res.error;
-        }
 
         const leaderboard = [];
 

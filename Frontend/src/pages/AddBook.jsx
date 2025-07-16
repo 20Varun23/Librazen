@@ -25,9 +25,6 @@ function AddBook() {
           withCredentials: true,
         }
       );
-      if (res.error) {
-        throw res.error;
-      }
 
       toast.success("book added");
       navigate("/adminBook");

@@ -18,12 +18,7 @@ function SignUp() {
 
     try {
       console.log(user);
-      const res = await axios.post(`${backend_link}/users`, { user });
-      if (res.error) {
-        console.log(res.error);
-        toast.error("could not sign up user");
-        return;
-      }
+      await axios.post(`${backend_link}/users`, { user });
       toast.success("user got added");
       navigate("/login");
     } catch (err) {

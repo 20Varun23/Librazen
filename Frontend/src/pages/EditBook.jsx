@@ -13,11 +13,6 @@ function EditBook() {
     async function getBook() {
       try {
         const res = await axios.get(`${backend_link}/books/${id}`);
-
-        if (res.error) {
-          throw res.error;
-        }
-
         setBook(res.data[0]);
       } catch (err) {
         console.log(err);

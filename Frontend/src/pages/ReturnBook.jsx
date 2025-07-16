@@ -16,7 +16,6 @@ function ReturnBook() {
         const { data } = await axios.get(`${backend_link}/admin/issuer/${id}`, {
           withCredentials: true,
         });
-        console.log(data);
 
         setIssuer(data);
       } catch (err) {

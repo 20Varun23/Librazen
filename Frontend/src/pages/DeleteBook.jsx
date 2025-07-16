@@ -14,9 +14,6 @@ function DeleteBook() {
     e.preventDefault();
     try {
       const res = await axios.delete(`${backend_link}/books/${id}`);
-      if (res.error) {
-        throw res.error;
-      }
       toast.success("book deleted successfully");
       navigate("/adminBook");
     } catch (err) {

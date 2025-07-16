@@ -13,12 +13,6 @@ function Booklist() {
     async function getLeaderBoard() {
       try {
         const res = await axios.get(`${backend_link}/books`);
-        if (res.error) {
-          throw res.error;
-        }
-
-        console.log(res.data);
-
         setBooks(res.data);
       } catch (err) {
         console.log(err);

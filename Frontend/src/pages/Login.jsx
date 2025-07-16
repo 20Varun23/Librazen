@@ -16,10 +16,6 @@ function Login() {
       const res = await axios.post(`${backend_link}/users/login`, user, {
         withCredentials: true,
       });
-      if (res.error) {
-        toast.error(res.error);
-        return;
-      }
       toast.success("Admin logged in");
       window.location.href = "/dashboard";
     } catch (err) {
