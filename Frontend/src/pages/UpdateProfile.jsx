@@ -35,7 +35,7 @@ function UpdateProfile() {
 
     try {
       await axios.patch(
-        `${backend_link}/user`,
+        `${backend_link}/users`,
         { user },
         {
           withCredentials: true,

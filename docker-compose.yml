@@ -8,6 +8,9 @@ services:
     restart: always
     depends_on:
       - express
+    volumes:
+      - ./Frontend:/usr/src/app
+      - /usr/src/app/node_modules
 
   express:
     container_name: express
@@ -17,3 +20,6 @@ services:
     ports:
       - "8080:8080"
     restart: always
+    volumes:
+      - ./Backend:/usr/src/app
+      - /usr/src/app/node_modules
